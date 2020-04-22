@@ -1,0 +1,138 @@
+- sites:
+    ip: 172.29.1.57
+    hostname: QG001057XbookM
+- sites:
+    ip: 172.29.1.58
+    hostname: QG001058XbookM
+- sites:
+    ip: 172.29.1.61
+    hostname: QG001061Wlogin
+- sites:
+    ip: 172.29.1.62
+    hostname: QG001062Wlogin
+- sites:
+    ip: 172.29.101.15
+    hostname: QG101015Wdjapp
+- sites:
+    ip: 172.29.101.16
+    hostname: QG101016Wdjapp
+- sites:
+    ip: 172.29.101.17
+    hostname: QG101017Wdjapp
+- sites:
+    ip: 172.29.101.18
+    hostname: QG101018Wdjapp
+- sites:
+    ip: 172.29.102.11
+    hostname: QG102011XdjI
+- sites:
+    ip: 172.29.102.12
+    hostname: QG102012XdjI
+- sites:
+    ip: 172.29.102.13
+    hostname: QG102013XdjI
+- sites:
+    ip: 172.29.102.14
+    hostname: QG102014XdjI
+- sites:
+    ip: 172.29.102.19
+    hostname: QG102019WcspriI
+- sites:
+    ip: 172.29.102.20
+    hostname: QG102020WcspriI
+- sites:
+    ip: 172.29.102.21
+    hostname: QG102021WhaizhI
+- sites:
+    ip: 172.29.102.22
+    hostname: QG102022WhaizhI
+- sites:
+    ip: 172.29.102.23
+    hostname: QG102023WinvoMI
+- sites:
+    ip: 172.29.102.24
+    hostname: QG102024WinvoMI
+- sites:
+    ip: 172.29.102.25
+    hostname: QG102025WdjhtpI
+- sites:
+    ip: 172.29.102.26
+    hostname: QG102026WdjhtpI
+- sites:
+    ip: 172.29.2.11
+    hostname: QG002011WcrmI
+- sites:
+    ip: 172.29.2.12
+    hostname: QG002012WcrmI
+- sites:
+    ip: 172.29.2.15
+    hostname: QG002015WcarsaI
+- sites:
+    ip: 172.29.2.16
+    hostname: QG002016WcarsaI
+- sites:
+    ip: 172.29.2.17
+    hostname: QG002017WentzjI
+- sites:
+    ip: 172.29.2.18
+    hostname: QG002018WentzjI
+- sites:
+    ip: 172.29.2.19
+    hostname: QG002019WhicarI
+- sites:
+    ip: 172.29.2.20
+    hostname: QG002020WhicarI
+- sites:
+    ip: 172.29.2.21
+    hostname: QG002021WinterI 
+- sites:
+    ip: 172.29.2.22
+    hostname: QG002022WinterI 
+- sites:
+    ip: 172.29.2.23
+    hostname: QG002023WinvoiI
+- sites:
+    ip: 172.29.2.24
+    hostname: QG002024WinvoiI
+- sites:
+    ip: 172.29.2.25
+    hostname: QG002025XnotifI
+- sites:
+    ip: 172.29.2.26
+    hostname: QG002026XnotifI
+- sites:
+    ip: 172.29.2.27
+    hostname: QG002027WpaymeI
+- sites:
+    ip: 172.29.2.28
+    hostname: QG002028WpaymeI
+- sites:
+    ip: 172.29.2.29
+    hostname: QG002029WpaymeI
+- sites:
+    ip: 172.29.2.30
+    hostname: QG002030WpaymeI
+- sites:
+    ip: 172.29.2.31
+    hostname: QG002031Wpaymen
+- sites:
+    ip: 172.29.2.32
+    hostname: QG002032Wpaymen
+- sites:
+    ip: 172.29.2.33
+    hostname: QG002033WportaI
+- sites:
+    ip: 172.29.2.34
+    hostname: QG002034WportaI
+- sites:
+    ip: 172.29.2.35
+    hostname: QG002035WdbcfgI
+- sites:
+    ip: 172.29.2.36
+    hostname: QG002036WdbcfgI
+- sites:
+    ip: 172.29.2.39
+    hostname: QG002039WriskcI
+- sites:
+    ip: 172.29.2.40
+    hostname: QG002040WriskcI
