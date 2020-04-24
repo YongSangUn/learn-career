@@ -25,11 +25,11 @@
   - JMX：通过 JMX 进行监控，JMX(Java Management Extensions,即 Java 管理扩展)，监控 JVM 虚拟机。
 
 由 agent 采集数据，报告给监控主机 master。负责监控的中心主机为 `zabbix server`,zabbix 的数据库为 `zabbix database`，展示平台 GUI 为 `zabbix web`，`zabbix web` 使用 php 编写，所以需要依赖 LAMP 环境，如下图。
-> ![zabbix_agent_server](../../.attachments/zabbix_agent_server.png)
+> ![zabbix_agent_server](/.attachments/zabbix_agent_server.png)
 
 - 当监控规模变得异常庞大的时候，zabbix 支持 分布式监控，把监控对象分成不通的区域，每个区域设置一台代理主机。监控对象的信息被 agent 收集发送给 代理主机（相当于 `zabbix server`），被称为 `zabbix proxy`， `zabbix proxy` 在收集数据发送给真正的代理主机 `zabbix server`，机构如下。
 
-> ![zabbix_proxy](../../.attachments/zabbix_proxy.png)
+> ![zabbix_proxy](/.attachments/zabbix_proxy.png)
 
 ## zabbix 组件及工作模式
 

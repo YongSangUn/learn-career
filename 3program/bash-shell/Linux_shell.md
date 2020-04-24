@@ -242,7 +242,7 @@ exit
 - 5.2 shell 的父子关系
 
   - 子 shell
-    > ![child_shell](../../.attachments/child_shell.png)
+    > ![child_shell](/.attachments/child_shell.png)
 
   退出 子 shell 使用 `exit` 即可。
 
@@ -281,7 +281,7 @@ exit
   - 外部命令（文件系统命令，存在于 bash shell 之外的程序。外部命令通常存在于 `/bin、/usr/bin、/sbin、/usr/sbin 中。`）
     `$ which ps 或者 $ type -a ps # ps 是一个外部命令，可以使用 which 和 type 命令来找到它。`
     当外部命令执行时，会创建出一个子进程。这种操作被称为衍生。外部命令的衍生过程:
-    > ![forking](../../.attachments/forking.png)
+    > ![forking](/.attachments/forking.png)
 
   当进程必须执行衍生操作时，它需要花费时间和精力来设置新子进程的环境。所以说，外部命令多少还是有代价的。
 
@@ -667,7 +667,7 @@ $
 
   - 逻辑卷管理环境
 
-    > ![逻辑卷管理环境](../../.attachments/逻辑卷管理环境.png)
+    > ![逻辑卷管理环境](/.attachments/逻辑卷管理环境.png)
     > 第三个物理硬盘有一个未使用的分区。通过逻辑卷管理，你随后可以轻松地将这个未使用分区分配到已有卷组：要么用它创建一个新的逻辑卷，要么在需要更多空间时用它来扩展已有的逻辑卷。
     > 类似地，如果你给系统添加了一块硬盘，逻辑卷管理系统允许你将它添加到已有卷组，为某个已有的卷组创建更多空间，或是创建一个可用来挂载的新逻辑卷。这种扩展文件系统的方法要好用得多！
 

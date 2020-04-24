@@ -8,9 +8,9 @@
 平台即服务 (PAAS, Platform)
 软件即服务 (SAAS, Software)
 
->![ansible_server](../.attachments/ansible_server.png)
+>![ansible_server](/.attachments/ansible_server.png)
 
 - 职能划分
 
->![linux_ops](../.attachments/linux_ops.png)
+>![linux_ops](/.attachments/linux_ops.png)
 

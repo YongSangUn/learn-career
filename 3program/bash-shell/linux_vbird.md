@@ -15,7 +15,7 @@
 ### 5.2 Linux 文件权限概念
 
 - 文件的类型与权限之内容：
-  ![file_premission](../../.attachments/file_premission.png) - 第一个字符：[d-lbc]
+  ![file_premission](/.attachments/file_premission.png) - 第一个字符：[d-lbc]
   d：目录 -：文件
   l：软链接
   b：可随机存取装置
