@@ -1,6 +1,6 @@
 param(
     [Parameter(Mandatory = $true, Position = 0)]
-    [string]$name,
+    [string]$name
 )
 
 function Set-Cred {
@@ -53,13 +53,17 @@ function Get-ServerRoom {
 }
 
 
-$ip = ((route print | findstr "0.0.0.0.*0.0.0.0") -replace "\s{2,}", " ").split()[4]
+$ip = (cmd /c "FOR /F "tokens=4 " %i in ('route print^|findstr "0.0.0.0.*0.0.0.0"') do @echo %i" | Select-Object -Index 0)
 $serverRoom = Get-ServerRoom -Ip $ip
 
 $ip34 = "{0:d3}{1:d3}" -f [int]$ip.Split("\.")[2], [int]$ip.Split("\.")[3]
+$domain = (Get-WmiObject Win32_ComputerSystem).Domain
+if ($domain -eq "ehai.com") { $user = "domain" }
+elseif ($domain -eq "ehaic.com") { $user = "domainC" }
+else { throw "Unknown domain or domain not joined." }
 $cred = Set-Cred -user $user
 $hostname = $serverRoom + $ip34 + $name
 
-$domain = ((systeminfo | findstr Domain) -replace "\s{2,}", " ").Split()[1]
+
 $cred ; $hostname
 #Rename-Computer -NewName $hostname -DomainCredential $cred -Force -PassThru
