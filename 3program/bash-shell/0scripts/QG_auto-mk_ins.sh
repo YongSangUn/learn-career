@@ -6,7 +6,7 @@ get_var(){
     var=`awk -v nu=$1 'NR=="'"$i"'" {print $nu}' $file`
 }
 
-# 获取 配置信息和操作系统的函数，并转化为具体执行的名字。 
+# 获取 配置信息和操作系统的函数，并转化为具体执行的名字。
 get_cpu_os(){
     get_var 1 ;cpu_arm=$var     # 获取配置,转换为对应的执行文件
     if [ $cpu_arm -eq 2 ] ;then     # 判断类型
@@ -22,7 +22,7 @@ get_cpu_os(){
     get_var 2 ;os=$var          # 获取操作系统，转换为镜像id。
     if [ $os == "win" ] ;then
         os=${list_os[0]}
-        put_os="[Windows-Server2016]" 
+        put_os="[Windows-Server2016]"
     elif [ $os == "linux" ] ;then
         os=${list_os[1]}
         put_os="[Centos-7.6]"
@@ -35,7 +35,7 @@ mk_instance(){
     put_num=1       # 正在创建的机器
     # 循环读取文本，获取配置。
     while read line ;do
-        get_cpu_os 
+        get_cpu_os
         get_var 3 ;ip=$var
         get_var 4 ;server_type=$var
         get_var 5 ;name=$var
@@ -65,7 +65,7 @@ list_cpu_arm=(two_core.py four_core.py eight_core.py)
 # win2016 : img-9id7emv7,  centos7.6 : img-9qabwvbn .
 list_os=(img-9id7emv7 img-9qabwvbn)
 
-# 需要手动编辑创建的文本,每行代表不同的机器，格式为： 
+# 需要手动编辑创建的文本,每行代表不同的机器，格式为：
 # 2 win 10.10.10.10 X testI 4
 
 # 意为创建 2核4G IP段为 10.10.10.10-13，名字为 XtestI 的四台机器。
@@ -74,6 +74,6 @@ file="a.txt"
 sed -i '/^$/d' $file
 
 # 执行函数
-mk_instance 
+mk_instance
 
 

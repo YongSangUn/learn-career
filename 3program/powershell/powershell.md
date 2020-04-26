@@ -372,4 +372,24 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/in
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('http://ss-choco.1hai.cn/choco_install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
 
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString("http://ss-choco.1hai.cn/choco_install.ps1"))
+
 ```
+
+## 字符串操作符
+
+| 操作符               | 描述                                             | 示例                            |
+| -------------------- | ------------------------------------------------ | ------------------------------- |
+| \*                   | 代表一个字符串                                   | “PsTips.Net” -like “\*”         |
+| +                    | 合并两个字符串                                   | “Power” + “Shell”               |
+| -replace,-ireplace   | 替换字符串，大小写不敏感                         | “PsTips.Net” -replace “tip”,”1″ |
+| -creplace            | 替换字符串，大小写敏感                           | “PsTips.Net” -replace “Tip”,”1″ |
+| -eq, -ieq            | 验证是否相等，大小写不敏感                       | “Power” -eq “power”             |
+| -ceq                 | 验证是否相等，大小写敏感                         | “Power” -eq “Power”             |
+| -like, -ilike        | 验证字符串包含关系，允许模式匹配，大小写不敏感   | “PsTips.Net” -like “p\*”        |
+| -clike               | 验证字符串包含关系，允许模式匹配，大小写敏感     | “PsTips.Net” – clike “P\*”      |
+| -notlike,-inotlike   | 验证字符串不包含关系，允许模式匹配，大小写不敏感 | “PowerShell” -notlike “PS\*”    |
+| -cnotlike            | 验证字符串不包含关系，允许模式匹配，大小写敏感   | “PowerShell” -cnotlike “PO\*”   |
+| -match,-imatch       | 验证模式匹配，大小写不敏感                       | “PowerShell” -match “P\*”       |
+| -cmatch              | 验证模式匹配，大小写敏感                         | “Hello” -match “[ao]”           |
+| -notmatch,-inotmatch | 验证模式不匹配，大小写不敏感                     | “Hello” -notmatch “[ao]”        |
+| -cnotmatch           | 验证模式不匹配，大小写敏感                       | “Hello” -cnotmatch “[ao]”       |
