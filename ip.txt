@@ -1,0 +1,35 @@
+
+Windows IP Configuration
+
+
+Ethernet adapter vEthernet (默认交换机):
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::34bb:b6f6:c585:4bec%8
+   IPv4 Address. . . . . . . . . . . : 172.27.171.193
+   Subnet Mask . . . . . . . . . . . : 255.255.255.240
+   Default Gateway . . . . . . . . . : 
+
+Ethernet adapter 以太网:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::f876:5979:42b3:2aa1%14
+   IPv4 Address. . . . . . . . . . . : 192.168.5.172
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 192.168.5.254
+
+Ethernet adapter VMware Network Adapter VMnet1:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::a1b9:6f3:4fcb:171e%11
+   IPv4 Address. . . . . . . . . . . : 192.168.31.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 
+
+Ethernet adapter VMware Network Adapter VMnet8:
+
+   Connection-specific DNS Suffix  . : 
+   Link-local IPv6 Address . . . . . : fe80::4de8:dae4:e417:941b%10
+   IPv4 Address. . . . . . . . . . . : 192.168.17.1
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Default Gateway . . . . . . . . . : 
