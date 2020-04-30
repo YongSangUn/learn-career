@@ -393,3 +393,21 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 | -cmatch              | 验证模式匹配，大小写敏感                         | “Hello” -match “[ao]”           |
 | -notmatch,-inotmatch | 验证模式不匹配，大小写不敏感                     | “Hello” -notmatch “[ao]”        |
 | -cnotmatch           | 验证模式不匹配，大小写敏感                       | “Hello” -cnotmatch “[ao]”       |
+
+```powershell
+### PowerShell脚本将一个变量当做命令执行
+# 如果只是一条命令，可以用 & 执行命令
+Write-Host "正在执行单条命令..."
+& "Ping.exe" 'pstips.net'
+& 'Get-Date'
+# 如果是多条命令,使用 & 来执行脚本块
+Write-Host "正在执行多条命令..."
+$multipleLine = @"
+ping pstips.net
+get-Date
+"@
+$code = [scriptblock]::Create($multipleLine)
+& $code
+# 当然也可以使用  变量前加点 "."
+& "Ping.exe" 'baidu.com'
+."ping.exe" 'baidu.com'
