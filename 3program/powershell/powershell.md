@@ -411,3 +411,11 @@ $code = [scriptblock]::Create($multipleLine)
 # 当然也可以使用  变量前加点 "."
 & "Ping.exe" 'baidu.com'
 ."ping.exe" 'baidu.com'
+
+
+### 异常捕获
+($Error[0] | Select -Property *).Exception.GetType().FullName
+$Error[0] | fl * -f
+
+# 无需关闭shell 即可刷新环境变量
+refreshenv
