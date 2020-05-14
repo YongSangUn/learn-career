@@ -419,3 +419,7 @@ $Error[0] | fl * -f
 
 # 无需关闭shell 即可刷新环境变量
 refreshenv
+
+# PowerShell 技能连载 - 允许 PowerPoint 中的点击操作
+$path = 'HKCU:\Software\Microsoft\Office\16.0\PowerPoint\Security'
+Set-ItemProperty -Path $path -Name RunPrograms -Value 1 -Type DWord
