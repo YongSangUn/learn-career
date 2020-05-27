@@ -175,6 +175,13 @@ index-url = https://mirrors.aliyun.com/pypi/simple
     山东理工大学：http://pypi.sdutlinux.org/
     豆瓣：http://pypi.douban.com/simple/
 
+
+# pip 生成 requirements.txt
+生成requirements.txt文件
+pip freeze > requirements.txt
+
+安装requirements.txt依赖
+pip install -r requirements.txt
 ```
 
 ### 获取本机真实 ip
@@ -182,4 +189,5 @@ index-url = https://mirrors.aliyun.com/pypi/simple
 ```python
 # 通过 udp 抓取包头部
 python -c "import socket;print([(s.connect(('8.8.8.8', 0)), s.getsockname()[0], s.close()) for s in [socket.socket(socket.AF_INET, socket.SOCK_DGRAM)]][0][1])"
+
 ```
