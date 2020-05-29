@@ -1,5 +1,10 @@
 # -*- coding:utf-8 -*-
 
+'''
+数据库巡检表格相关操作，确保安装 openpyxl 模块。
+    $ pip install openpyxl
+'''
+
 import openpyxl
 import time
 from openpyxl.comments import Comment
