@@ -115,19 +115,22 @@ tcp        0      0 127.0.0.1:9000         0.0.0.0:*                   LISTEN
 tcp        0      0 :::22                  :::*                        LISTEN
 ```
 
-#### 内建变量：
+#### 内建变量
 
-| \$0      | 当前记录（这个变量中存放着整个行的内容）                                        |
-| -------- | ------------------------------------------------------------------------------- |
-| $1~$n    | 当前记录的第 n 个字段，字段间由 FS 分隔                                         |
-| FS       | 输入字段分隔符 默认是空格或 Tab                                                 |
-| NF       | 当前记录中的字段个数，就是有多少列                                              |
-| NR       | 已经读出的记录数，就是行号，从 1 开始，如果有多个文件话，这个值也是不断累加中。 |
-| FNR      | 当前记录数，与 NR 不同的是，这个值会是各个文件自己的行号                        |
-| RS       | 输入的记录分隔符， 默认为换行符                                                 |
-| OFS      | 输出字段分隔符， 默认也是空格                                                   |
-| ORS      | 输出的记录分隔符，默认为换行符                                                  |
-| FILENAME | 当前输入文件的名字                                                              |
+[8 Powerful Awk Built-in Variables – FS, OFS, RS, ORS, NR, NF, FILENAME, FNR](https://www.thegeekstuff.com/2010/01/8-powerful-awk-built-in-variables-fs-ofs-rs-ors-nr-nf-filename-fnr/)
+
+| \$0      | en 示意                                               | 当前记录（这个变量中存放着整个行的内容）                                        |
+| -------- | ----------------------------------------------------- | ------------------------------------------------------------------------------- |
+| $1~$n    |                                                       | 当前记录的第 n 个字段，字段间由 FS 分隔                                         |
+| FS       | Input field separator                                 | 输入字段分隔符 默认是空格或 Tab                                                 |
+| NF       | Number of Fields in a record                          | 当前记录中的字段个数，就是有多少列                                              |
+| NR       | Number of Records                                     | 已经读出的记录数，就是行号，从 1 开始，如果有多个文件话，这个值也是不断累加中。 |
+| FNR      | Number of Records relative to the current input file  | 当前记录数，与 NR 不同的是，这个值会是各个文件自己的行号                        |
+| RS       | record separator                                      | 输入的记录分隔符， 默认为换行符                                                 |
+| OFS      | output field separator                                | 输出字段分隔符， 默认也是空格                                                   |
+| ORS      | output record separator                               | 输出的记录分隔符，默认为换行符                                                  |
+| FILENAME | Name of the current input file                        | 当前输入文件的名字                                                              |
+| \$NF     | the last field in a record can be represented by \$NF |                                                                                 |
 
 ### awk_tips
 
@@ -152,4 +155,24 @@ tcp        0      0 :::22                  :::*                        LISTEN
 curdate=20110715
 Filename=`ls -l|awk -v cdate=$curdate 'NR!=1 && $8<cdate {print $8}'`
 echo $Filename
+```
+
+### 数组
+
+可以用来存储一组变量，awk 中所有的数组都是关联数组，意味着它的下标可以是一个字符串也可以是一个数字。
+
+```bash
+array[index] = value
+
+# 使用 for 循环来读取所有元素
+for (item in array)
+
+# 数组的下标由 item 来确定，使用 array[item] 测试元素的值，也可以使用 delete删除。
+# 统计每个用户的进程的占了多少内存（注：sum的RSS那一列）
+$ ps aux | awk 'NR!=1{a[$1]+=$6;} END { for(i in a) print i ", " a[i]"KB";}'
+dbus, 540KB
+mysql, 99928KB
+www, 3264924KB
+root, 63644KB
+hchen, 6020KB
 ```
