@@ -6,7 +6,7 @@
     "configurations": [
 
         {
-            "name": "Python: Current File",
+            "name": "Python38",
             "type": "python",
             "request": "launch",
             "program": "${file}",
@@ -15,6 +15,16 @@
                 "PYTHONPATH": "${workspaceRoot}"
             },
             "envFile": "${workspaceFolder}/.env",
+            "stopOnEntry": true
+        },
+        {
+            "name": "Go-lang",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceRoot}",
+            "env": {},
+            "args": [],
             "stopOnEntry": true
         }
     ]
