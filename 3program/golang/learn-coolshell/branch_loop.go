@@ -61,11 +61,11 @@ func main() {
 	}
 	//infinite loop, same like: for(;;)
 	l := 1
-	for {
-		if i > 10 {
-			break
-		}
-		fmt.Println(l)
-		l++
-	}
+	// for {
+	// 	if i > 10 {
+	// 		break
+	// 	}
+	// 	fmt.Println(l)
+	// 	l++
+	// }
 }
