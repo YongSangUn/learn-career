@@ -6,6 +6,9 @@ https://www.liwenzhou.com/posts/Go/00_go_in_vscode/
 # 在此之前请先设置GOPROXY，打开终端执行以下命令
 go env -w GOPROXY=https://goproxy.cn,direct
 
+https://goproxy.cn/
+
+
 vscode 中 F1 输入：
 > go:install
 
