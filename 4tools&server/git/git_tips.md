@@ -36,4 +36,10 @@ git push origin --delete Chapater6
 # 删除本地分支 Chapater6
 git branch -d  Chapater6
 
+$ git filter-branch --index-filter "git rm -rf --cached --ignore-unmatch YOURFILENAME" HEAD
+$ rm -rf .git/refs/original/
+$ git reflog expire --all
+$ git gc --aggressive --prune
+$ git push origin master --force
+$ git push --all --force
 ```
