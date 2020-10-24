@@ -4,6 +4,7 @@
 // and let us generate a new one for you.
 // To view the default settings, hold "alt" while clicking on the "Settings" button.
 // For documentation on these settings, see: https://aka.ms/terminal-documentation
+// PowerShell -Command "Set-ExecutionPolicy RemoteSigned -scope Process; iwr -useb https://raw.githubusercontent.com/gerardog/gsudo/master/installgsudo.ps1 | iex"
 {
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
