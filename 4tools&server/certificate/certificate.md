@@ -41,6 +41,8 @@ PKCS#12/PFX 格式
 
 ## 转换命令
 
+> 手册页 <https://www.openssl.org/docs/man1.0.2/man1/req.html>
+
 ```linux
 ### 查看内容
 $ openssl xxx(view-format) -in xxx.xxx(key or cert file) -noout -text
@@ -52,6 +54,9 @@ $ openssl rsa -noout -text -in server.key
 $ openssl [ req | x509 ] -noout -text -in service.[ csr | ( crt | cer | pem )]
 
 ### 简单证书转换
-$ openssl xxx(out-format) -inform xxx(in-format) \
+$ openssl DER|PEM(out-format) -inform DER|PEM(in-format) \
     -in certificate.xxx(in-suffixName) -out certificate.xxx(out-suffixName)
+
+### 示例
+
 ```
