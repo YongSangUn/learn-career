@@ -1,18 +1,86 @@
+##############################  Powerline & CLI Settings  ##############################
+
+## Powershell Line
+# https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup
+try {
+    Import-Module posh-git
+    Import-Module oh-my-posh
+} catch {
+    Install-Module posh-git -Scope CurrentUser -Force
+    Install-Module oh-my-posh -Scope CurrentUser -RequiredVersion 2.0.496 -Force
+
+    ## oh-my-posh v3 setting (V3 powerline display error.)
+    # Install-Module oh-my-posh -Scope CurrentUser -Force
+
+    Import-Module posh-git
+    Import-Module oh-my-posh
+
+    # Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
+    # link: https://ohmyposh.dev/docs/upgrading/
+    # Update-Module -Name oh-my-posh -AllowPrerelease -Scope CurrentUser
+}
+
+$_ps = $PSVersionTable
+$_psVersion = $_ps.PSVersion
+$_psEdition = $_ps.PSEdition
+
+if ($_psVersion.Major -eq 5) {
+    $theme = "Honukai" # powershell v5
+} else {
+    $theme = "Paradox" # powershell v7
+}
+
+try {
+    Set-Theme $theme # oh-my-posh v2
+} catch {
+    Set-PoshPrompt $theme # oh-my-posh v3
+}
+
+try { Set-PSReadLineOption -PredictionSource History }catch {} # 设置预测文本来源为历史记录
+Set-PSReadlineKeyHandler -Key Tab -Function Complete # 设置 Tab 键补全
+Set-PSReadLineKeyHandler -Key "Ctrl+d" -Function MenuComplete # 设置 Ctrl+d 为菜单补全和 Intellisense
+Set-PSReadLineKeyHandler -Key "Ctrl+z" -Function Undo # 设置 Ctrl+z 为撤销
+Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward # 设置向上键为后向搜索历史记录
+Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward # 设置向下键为前向搜索历史纪录
+
+## install gsudo, allow the current CLI to elevate administrator authority.
+# Set-ExecutionPolicy RemoteSigned -scope Process;
+# iwr -useb https://raw.githubusercontent.com/gerardog/gsudo/master/installgsudo.ps1 | iex
+
+## Display powershell version
+Write-Host "==> Powershell Version: $_psEdition $_psVersion`n" -ForegroundColor Green
+
+## CLI encoding use utf8.
 # [System.Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding(65001)
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 
+
+##############################  Paramters  ##############################
+
 ### profile.ps1 file.
-$myProfile = "$HOME\Documents\WindowsPowerShell\profile.ps1"
+$myProfile = $PROFILE.CurrentUserAllHosts
+
+## Terminal
 $wtJsonFile = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
 $wtDefaultJsonFile = "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.0.1401.0_x64__8wekyb3d8bbwe\defaults.json"
 
 $desk = "$HOME\desktop"
 
-$starGit = "D:\2git\0star-repo"
-$learnGit = "D:\2git\learn-career"
+## Git directory.
+$gitMainDir = "D:\2git"
+$starGit = Join-Path $gitMainDir "0star-repo"
+$learnGit = Join-Path $gitMainDir "learn-career"
+$nocResourceGit = Join-Path $gitMainDir "noc.resource"
+$nocWikiGit = Join-Path $gitMainDir "noc.wiki"
+
+## Python Dir
 $pythonPkg = "C:\python38\Lib\site-packages\"
 
-function EncT {
+
+##############################  Functions  ##############################
+
+## encoding & decoding.
+function ET {
     param (
         [string]$text
     )
@@ -20,8 +88,7 @@ function EncT {
     $encodedText = [Convert]::ToBase64String($bytes)
     return $encodedText
 }
-
-function DecT {
+function DT {
     param (
         [string]$text
     )
@@ -30,26 +97,40 @@ function DecT {
     return $encodingText
 }
 
+## Ps remote settings
 function Get-Cred {
-    ### set credential.
+    # get the ps-credential by name.
     param(
         [string]$user
     )
     # local
     $userAdmin = "administrator"
-    $passwdAdmin = DecT "xxxxxxxxx" | ConvertTo-SecureString -asPlainText -Force
+    $passwdAdmin = DT $env:passwdAdmin | ConvertTo-SecureString -asPlainText -Force
+    $passwdAdmin1 = DT $env:passwdAdmin1 | ConvertTo-SecureString -asPlainText -Force
+    $passwdAdmin3 = DT $env:passwdAdmin3 | ConvertTo-SecureString -asPlainText -Force
+    $passwdAdminQ = DT $env:passwdAdminQ | ConvertTo-SecureString -asPlainText -Force
+    # domain
+    $userDomain = "ehai\administrator"
+    $userDomainC = "ehaic\administrator"
+    $userDomainCar = "ehicar\administrator"
+    $passwdDomain = DT $env:passwdDomain | ConvertTo-SecureString -asPlainText -Force
 
     # User-list: key: userNicename; value1: username, values2: userpassword.
     $creds = @{
-        admin = $userAdmin, $passwdAdmin
+        admin     = $userAdmin, $passwdAdmin
+        admin1    = $userAdmin, $passwdAdmin1
+        admin3    = $userAdmin, $passwdAdmin3
+        adminq    = $userAdmin, $passwdAdminQ
+        domain    = $userDomain, $passwdDomain
+        domainc   = $userDomainC, $passwdDomain
+        domaincar = $userDomainCar, $passwdDomain
     }
 
     $cred = New-Object System.Management.Automation.PSCredential($creds.$user[0], $creds.$user[1])
     return $cred
 }
-
 function NPS {
-    ### new pssesion
+    ### new-pssession. google new-pssession.
     param (
         [string]$ip,
         [string]$credName
@@ -57,17 +138,8 @@ function NPS {
     try { New-PSSession $ip -Credential (Get-Cred $credName) }
     catch { New-PSSession $ip -Credential $credName }
 }
-
-function du($dir = ".") {
-    get-childitem $dir | % {
-        $f = $_
-        get-childitem -r $_.FullName |
-        measure-object -property length -sum |
-        select @{Name = "Name"; Expression = { $f } }, sum }
-}
-
 function Ivk-C {
-    ### set invoke-command
+    ### set invoke-command, powershell Execute commands remotely without logging into the server.
     param (
         [string]$ip,
         [string]$credName,
@@ -76,9 +148,8 @@ function Ivk-C {
     try { Invoke-Command $ip -Credential (Get-Cred $credName) -ScriptBlock $scripts }
     catch { Invoke-Command $ip -Credential $credName -ScriptBlock $scripts }
 }
-
 function EPS {
-    ### set enter-pssession.
+    ### set enter-pssession. powershell login to remote server using winrm protocol.
     param (
         [string]$ip,
         [string]$credName
@@ -88,42 +159,61 @@ function EPS {
     try { Enter-PsSession $ip -Credential (Get-Cred $credName) }
     catch { Enter-PsSession $ip -Credential $credName }
 }
-
 function WEPS {
+    ### powershell login to remote server using rdp protocol.
     param (
         $ip,
         $port
     )
-    if (($ip) -and ($port)) {
+    if ($ip) {
+        if (!($port)) { $port = 49964 }
         mstsc /v:${ip}:${port}
     } else {
         "--> Please enter the correct parameters.`n`t$ Eps-Win 10.10.10.10 12345"
     }
 }
-
 function LEPS {
+    ### windows login to remote linux server using wsl,
+    # Need to configure ssh policy and sshpass.
+    # $ vim /etc/ssh/ssh_config
+    # StrictHostKeyChecking no
+    # $ vim /etc/ssh/sshd_config
+    # GSSAPIAuthentication no
+    # UseDNS no
+    # $ service sshd restart
+
+    # yum -y install sshpass
     param (
         [string]$ipAndPort,
         [string]$cred
     )
     $credDict = @{
-        admin = "xxxxxxxxxxxx"
+        admin  = $env:passwdAdmin
+        admin1 = $env:passwdadmin1
+        admin3 = $env:passwdAdmin3
+        aaa    = $env:passwdAaa
     }
 
     $ip = $ipAndPort.Split(":")[0]
     $port = $ipAndPort.Split(":")[1]
     if (!($port)) { $port = 27864 }
 
-    if (!($cred)) { $cred = "admin" }
-    $passwd = DecT $credDict.$cred
+    if (!($cred)) {
+        $passwd = DT $credDict."admin"
+    } elseif ($credDict.Keys -contains $cred) {
+        $passwd = DT $credDict.$cred
+    } else {
+        $passwd = $cred
+    }
 
     bash -c "sshpass -p '$passwd' ssh -p $port root@$ip"
 }
 
+
 function WCP {
-    ### copy item remote.
+    ### Copy files between windows & windows hosts.
     # Usages:
-    #     scp 172.20.1.1,c:\test.txt c:\ admin
+    #     WCP 172.20.1.1,c:\test.txt c:\ admin
     #               -eq
     #     Copy-Item C:\test.txt -Destination c:\ -ToSession (EPS 172.20.1.1 admin)
     param (
@@ -165,14 +255,19 @@ function WCP {
 }
 
 function LCP {
-    # $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name
+    ### Copy files between windows & linux hosts.
+    # Usages:
+    #   $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name
     param (
         [string]$file,
         [string]$target,
         [string]$cred
     )
     $credDict = @{
-        admin = "xxxxxxxxxxxxx"
+        admin  = $env:passwdAdmin
+        admin1 = $env:passwdadmin1
+        admin3 = $env:passwdAdmin3
+        aaa    = $env:passwdAaa
     }
 
     if ($file.Split()[0] -eq $file) {
@@ -209,14 +304,19 @@ function LCP {
 
     if (!($port)) { $port = 27864 }
     if (!($cred)) { $cred = "admin" }
-    $passwd = DecT $credDict.$cred
+    $passwd = DT $credDict.$cred
 
     # Write-Host "sshpass -p '$passwd' scp -P $port $source $destination"
     bash -c "sshpass -p '$passwd' scp -P $port $source $destination"
 }
-
-# use wsl launch ipython3.
-function Ipy3 { bash -c 'ipy3' }
+function SangUn-Centos {
+    # My Centos Server.
+    ssh -p 1996 $env:myCentosHost
+}
+function Ipy3 {
+    # use wsl launch ipython3.
+    bash -c 'ipy3'
+}
 function Qt { exit }
 
 
@@ -231,10 +331,3 @@ Function Edit-Profile { vim $profile }
 # for editing your Vim settings
 Function Edit-Vimrc { vim $home\_vimrc }
 
-
-### --------------------powershell line-------------------- ###
-# Install-Module posh-git -Scope CurrentUser
-# Install-Module oh-my-posh -Scope CurrentUser
-Import-Module posh-git
-Import-Module oh-my-posh
-Set-Theme Honukai
