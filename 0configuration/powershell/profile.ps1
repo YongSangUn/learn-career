@@ -166,7 +166,7 @@ function WEPS {
         $port
     )
     if ($ip) {
-        if (!($port)) { $port = 49964 }
+        if (!($port)) { $port = $env:winPort }
         mstsc /v:${ip}:${port}
     } else {
         "--> Please enter the correct parameters.`n`t$ Eps-Win 10.10.10.10 12345"
@@ -196,7 +196,7 @@ function LEPS {
 
     $ip = $ipAndPort.Split(":")[0]
     $port = $ipAndPort.Split(":")[1]
-    if (!($port)) { $port = 27864 }
+    if (!($port)) { $port = $env:linPort }
 
     if (!($cred)) {
         $passwd = DT $credDict."admin"
@@ -257,7 +257,7 @@ function WCP {
 function LCP {
     ### Copy files between windows & linux hosts.
     # Usages:
-    #   $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name
+    #   $ lcp 1.1.1.1:12345,/dir/file /dir2/ cred-name
     param (
         [string]$file,
         [string]$target,
@@ -302,7 +302,7 @@ function LCP {
         $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name"
     }
 
-    if (!($port)) { $port = 27864 }
+    if (!($port)) { $port = $env:linPort }
     if (!($cred)) { $cred = "admin" }
     $passwd = DT $credDict.$cred
 
@@ -311,7 +311,7 @@ function LCP {
 }
 function SangUn-Centos {
     # My Centos Server.
-    ssh -p 1996 $env:myCentosHost
+    ssh -p $env:myCentosHostPort $env:myCentosHost
 }
 function Ipy3 {
     # use wsl launch ipython3.
