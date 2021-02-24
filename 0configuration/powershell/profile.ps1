@@ -36,12 +36,8 @@ try {
     Set-PoshPrompt $theme # oh-my-posh v3
 }
 
-try { Set-PSReadLineOption -PredictionSource History }catch {} # 设置预测文本来源为历史记录
-Set-PSReadlineKeyHandler -Key Tab -Function Complete # 设置 Tab 键补全
-Set-PSReadLineKeyHandler -Key "Ctrl+d" -Function MenuComplete # 设置 Ctrl+d 为菜单补全和 Intellisense
-Set-PSReadLineKeyHandler -Key "Ctrl+z" -Function Undo # 设置 Ctrl+z 为撤销
-Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward # 设置向上键为后向搜索历史记录
-Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward # 设置向下键为前向搜索历史纪录
+# Set the prediction text source to history
+try { Set-PSReadLineOption -PredictionSource History }catch {}
 
 ## install gsudo, allow the current CLI to elevate administrator authority.
 # Set-ExecutionPolicy RemoteSigned -scope Process;
