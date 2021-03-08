@@ -1,0 +1,247 @@
+{
+    //------------------------------  Editor  -------------------------------//
+    "editor.minimap.enabled": true,
+    "editor.detectIndentation": false,
+    "editor.wordWrap": "on",
+    "editor.renderWhitespace": "boundary",
+    "editor.snippetSuggestions": "top",
+    "editor.suggestSelection": "first",
+    "editor.renderLineHighlight": "all",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    "editor.accessibilitySupport": "off",
+    //"editor.fontFamily": "Operator Mono",
+    //"editor.fontLigatures": true,
+    //------------------------------  Workbench  ----------------------------//
+    "workbench.statusBar.visible": true,
+    "workbench.activityBar.visible": true,
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.sideBar.location": "left",
+    // "workbench.colorTheme": "Monokai++",
+    "workbench.iconTheme": "vscode-icons",
+    "workbench.tree.indent": 20,
+    "workbench.editor.closeEmptyGroups": false,
+    //------------------------------  File  ---------------------------------//
+    "files.eol": "\n",
+    //------------------------------  Windows  ------------------------------//
+    "window.zoomLevel": 0,
+    //------------------------------  Markdown  -----------------------------//
+    "[markdown]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.wordWrap": "on",
+        "editor.renderWhitespace": "all",
+        "editor.quickSuggestions": {
+            "others": true,
+            "comments": true,
+            "strings": true
+        },
+        "editor.acceptSuggestionOnEnter": "on"
+    },
+    //------------------------------ Markdown Preview Enhanced --------------//
+    "markdown-preview-enhanced.liveUpdate": true,
+    "markdown-preview-enhanced.mermaidTheme": "default",
+    "markdown-preview-enhanced.previewTheme": "atom-dark.css",
+    "markdown-preview-enhanced.codeBlockTheme": "monokai.css",
+    //------------------------------  Json  ---------------------------------//
+    "json.trace.server": "messages",
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify",
+        "editor.tabSize": 4,
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+        // "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    //------------------------------ Golang ---------------------------------//
+    "go.gopath": "C:\\go_work",
+    "go.goroot": "C:\\Go",
+    "go.inferGopath": false, // 使用 Go Modules 时无需 inferGopath
+    "go.useLanguageServer": true,
+    "go.autocompleteUnimportedPackages": true,
+    "go.gotoSymbol.includeImports": false,
+    "go.gotoSymbol.includeGoroot": false,
+    "go.useCodeSnippetsOnFunctionSuggest": true,
+    "go.useCodeSnippetsOnFunctionSuggestWithoutType": true,
+    "go.lintOnSave": "file",
+    "go.buildOnSave": "off",
+    "go.formatTool": "goimports",
+    // https://goinbigdata.com/goimports-vs-gofmt/
+    "go.testFlags": [
+        "-v"
+    ],
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+        // Optional: Disable snippets, as they conflict with completion ranking.
+        // "editor.snippetSuggestions": "none",
+    },
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },
+    // gopls
+    "gopls": {
+        "completeUnimported": true,
+        "usePlaceholders": true,
+        "completionDocumentation": true,
+        "hoverKind": "SynopsisDocumentation" // No/Synopsis/Full, default Synopsis
+    },
+    // "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    //------------------------------  Shell  --------------------------------//
+    "[shellscript]": {
+        "files.eol": "\n",
+        "editor.tabSize": 4,
+    },
+    //------------------------------  Shellformat  --------------------------//
+    "shellformat.path": "D:\\0Program Files\\Git\\cmd\\shfmt.exe",
+    "shellformat.flag": "-i=4 -sr -ci",
+    //------------------------------  Shellcheck  ---------------------------//
+    "shellcheck.enable": true,
+    "shellcheck.enableQuickFix": false,
+    "shellcheck.run": "onType",
+    "shellcheck.executablePath": "D:\\0Program Files\\Git\\cmd\\shellcheck.exe",
+    "shellcheck.exclude": [],
+    "shellcheck.customArgs": [],
+    "shellcheck.ignorePatterns": {},
+    "shellcheck.ignoreFileSchemes": [
+        "git",
+        "gitfs"
+    ],
+    "shellcheck.useWSL": false,
+    //------------------------------  Python  -------------------------------//
+    "python.languageServer": "Pylance",
+    "python.defaultInterpreterPath": "C:\\python38\\python.exe",
+    "python.pythonPath": "C:\\python38\\python.exe",
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style",
+        "{based_on_style: google, indent_width: 4, column_limit: 79}"
+    ],
+    "python.linting.flake8Enabled": true,
+    "python.linting.flake8Args": [
+        "--max-line-length=256"
+    ],
+    "python.linting.pylintEnabled": false,
+    "python.linting.pycodestyleEnabled": true,
+    // "python.autoComplete.extraPaths": [
+    //     "C:\\python38\\",
+    //     "C:\\python38\\Lib",
+    //     "C:\\python38\\Lib\\site-packages",
+    //     "C:\\python38\\Dlls"
+    // ],
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.extraPaths": [
+        "C:\\python38\\",
+        "C:\\python38\\Lib",
+        "C:\\python38\\Lib\\site-packages",
+        "C:\\python38\\Dlls",
+        "D:\\2git\\noc.resource\\0project\\qcloud.sdk\\"
+    ],
+    "vsintellicode.python.completionsEnabled": true,
+    "python.analysis.autoImportCompletions": false,
+    "git.path": "D:/0Program Files/Git/bin/git.exe",
+    "git.autofetch": true,
+    //------------------------------  Code Runner  --------------------------//
+    "code-runner.executorMap": {
+        "javascript": "node",
+        "java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
+        "c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+        "php": "php",
+        "python": "set PYTHONIOENCODING=utf8 && python -u",
+        "perl": "perl",
+        "perl6": "perl6",
+        "ruby": "ruby",
+        "go": "go run",
+        "lua": "lua",
+        "powershell": "powershell -ExecutionPolicy ByPass -File",
+        "bat": "cmd /c",
+        // "shellscript": "bash",
+        "shellscript": "cd d:\\0program files\\git\\bin && bash",
+        "csharp": "scriptcs",
+        "typescript": "ts-node",
+        "r": "Rscript",
+        "rust": "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+    },
+    //------------------------------  PasteImage  ---------------------------//
+    "pasteImage.path": "${projectRoot}/.attachments",
+    "pasteImage.basePath": "${projectRoot}/.attachments",
+    "pasteImage.forceUnixStyleSeparator": true,
+    "pasteImage.prefix": "/.attachments/",
+    //------------------------------  Sync  ---------------------------------//
+    "sync.gist": "6aaa1d728f144b923ab57919535c0421",
+    //------------------------------  Kite  ---------------------------------//
+    // "kite.showWelcomeNotificationOnStartup": false,
+    //------------------------------  POWERSHELL  ---------------------------//
+    "powershell.codeFormatting.newLineAfterCloseBrace": false,
+    //------------------------------  Terminal  -----------------------------//
+    "terminal.integrated.shell.windows": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "terminal.integrated.shell.linux": "/usr/bin/bash",
+    "terminal.integrated.fontFamily": "Cascadia Code PL",
+    //------------------------------  CopyTranslate  ------------------------//
+    "commentTranslate.targetLanguage": "zh-CN",
+    //------------------------------  Drawio  -------------------------------//
+    // "hediet.vscode-drawio.local-storage": "xxx",
+    //------------------------------  leetcode  -----------------------------//
+    "leetcode.endpoint": "leetcode-cn",
+    "leetcode.hint.configWebviewMarkdown": false,
+    "leetcode.workspaceFolder": "D:\\2git\\learn-career\\7leetcode\\python3",
+    "leetcode.defaultLanguage": "python3",
+    //------------------------------  sql  ----------------------------------//
+    "[sql]": {
+        "editor.defaultFormatter": "adpyke.vscode-sql-formatter"
+    },
+    //------------------------------  yaml  ---------------------------------//
+    "[yaml]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    //------------------------------  svg  ----------------------------------//
+    "svg.preview.mode": "svg",
+    //------------------------------  others  -------------------------------//
+    "diffEditor.ignoreTrimWhitespace": false,
+    //------------------------------  html  ---------------------------------//
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify",
+        "editor.tabSize": 2,
+    },
+    //------------------------------  beautify  -----------------------------//
+    "beautify.language": {
+        "js": {
+            "type": [
+                "javascript",
+                "json"
+            ],
+            "filename": [
+                ".jshintrc",
+                ".jsbeautify"
+            ]
+        },
+        "css": [
+            "css",
+            "scss"
+        ],
+        "html": [
+            "htm",
+            "html",
+            "vue" //在这里加上vue
+        ]
+    },
+    "[css]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "[javascript]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "hediet.vscode-drawio.theme": "dark",
+}
