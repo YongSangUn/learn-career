@@ -27,7 +27,7 @@ $_psEdition = $_ps.PSEdition
 if ($_psVersion.Major -eq 5) {
     $theme = "Honukai" # powershell v5
 } else {
-    $theme = "Paradox" # powershell v7
+    $theme = "Emodipt" # powershell v7
 }
 
 try {
@@ -63,8 +63,8 @@ $wtDefaultJsonFile = "C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.0
 $desk = "$HOME\desktop"
 
 ## Git directory.
-$gitMainDir = "D:\2git"
-$starGit = Join-Path $gitMainDir "0star-repo"
+$gitMainDir = "D:\git"
+$starGit = Join-Path $gitMainDir "0star"
 $learnGit = Join-Path $gitMainDir "learn-career"
 $nocResourceGit = Join-Path $gitMainDir "noc.resource"
 $nocWikiGit = Join-Path $gitMainDir "noc.wiki"
@@ -170,15 +170,8 @@ function WEPS {
 }
 function LEPS {
     ### windows login to remote linux server using wsl,
-    # Need to configure ssh policy and sshpass.
-    # $ vim /etc/ssh/ssh_config
-    # StrictHostKeyChecking no
-    # $ vim /etc/ssh/sshd_config
-    # GSSAPIAuthentication no
-    # UseDNS no
-    # $ service sshd restart
+    # Need to install sshpass.
 
-    # yum -y install sshpass
     param (
         [string]$ipAndPort,
         [string]$cred
@@ -202,7 +195,7 @@ function LEPS {
         $passwd = $cred
     }
 
-    bash -c "sshpass -p '$passwd' ssh -p $port root@$ip"
+    bash -c "sshpass -p '$passwd' ssh -p $port root@$ip -o StrictHostKeyChecking=no"
 }
 
 
@@ -253,7 +246,7 @@ function WCP {
 function LCP {
     ### Copy files between windows & linux hosts.
     # Usages:
-    #   $ lcp 1.1.1.1:12345,/dir/file /dir2/ cred-name
+    #   $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name
     param (
         [string]$file,
         [string]$target,
@@ -298,7 +291,7 @@ function LCP {
         $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name"
     }
 
-    if (!($port)) { $port = $env:linPort }
+    if (!($port)) { $port = $env:linPort  }
     if (!($cred)) { $cred = "admin" }
     $passwd = DT $credDict.$cred
 
