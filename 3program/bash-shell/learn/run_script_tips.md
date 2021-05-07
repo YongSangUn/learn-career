@@ -77,7 +77,7 @@ ENDSSH
 ## 免交互执行脚本
 
 ```bash
-sshpass -p pwds ssh user@host <<'ENDSSH'
+sshpass -p pwds ssh user@host -p port -o StrictHostKeyChecking=no <<'ENDSSH'
 #commands to run on remote host
 ENDSSH
 ```
