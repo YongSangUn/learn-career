@@ -1,19 +1,19 @@
 #!/bin/bash
 
-################################################################################
-#                                                                              #
-# Description : Operate on Nginx upstream files by POOL & IP & PORT            #
-#               through OPTION and ACTION.                                     #
-#                                                                              #
-# Auther      : XiangYun.Long                                                  #
-#                                                                              #
-# Email       ：SangUn.Yong@gmail.com                                          #
-#                                                                              #
-# LastWrite   ：2020.06.21                                                     #
-#                                                                              #
-################################################################################
+###############################################################################
+#                                                                             #
+# Description : Operate on Nginx upstream files by POOL & IP & PORT           #
+#               through OPTION and ACTION.                                    #
+#                                                                             #
+# Auther      : XiangYun.Long                                                 #
+#                                                                             #
+# Email       ：SangUn.Yong@gmail.com                                         #
+#                                                                             #
+# LastWrite   ：2020.06.21                                                    #
+#                                                                             #
+###############################################################################
 
-######################    Step1 : Define Functions    ##########################
+######################    Step1 : Define Functions   ##########################
 
 # Parameter Description:
 # pool_name           : nginx upstream-conf pool-name
@@ -307,8 +307,8 @@ offline_upstream_conf_server() {
 
 }
 
-################################################################################
-##########################    usage & getopts    ###############################
+###############################################################################
+##########################    usage & getopts   ###############################
 
 usage() {
     echo "Usage:
@@ -432,9 +432,9 @@ shift $((OPTIND - 1))
 
 # exit 1
 
-################################################################################
+###############################################################################
 
-###################    Main script starts here    ##############################
+###################    Main script starts here    #############################
 
 _nginx_dir="/opt/nginx"
 _upstream_dir=$_nginx_dir/upstream/
