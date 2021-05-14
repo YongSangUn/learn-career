@@ -73,3 +73,88 @@ while True:
     album = makeAlbum(singer, description, songNums)
     print(album)
 ```
+
+## 8-9..11
+
+```python
+# -*- coding: utf-8 -*-
+
+magicians = ['Tom', 'Jerry', 'Dog']
+
+# 8-9
+def showMagicians(magicians):
+    for magician in magicians:
+        print(magician)
+
+# 8-10
+def makeGreat(magicians):
+    for index, magician in enumerate(magicians):
+        magicians[index] = f'the Great {magician}'
+    return magicians
+
+newMagicians = makeGreat(magicians[:])
+
+# 8-11
+showMagicians(magicians)
+showMagicians(newMagicians)
+
+```
+
+## 8-12..14
+
+```python
+# -*- coding: utf-8 -*-
+
+# 8-12
+def sandwichs(*foods):
+    print(foods)
+
+# 8-13
+def build_profile(first, last, **user_info):
+    profile = {}
+    profile['first_name'] = first
+    profile['last_name'] = last
+    for key, value in user_info.items():
+        profile[key] = value
+    return profile
+
+
+user_profile = build_profile('SangUn', 'Yong', location='shanghai')
+print(user_profile)
+
+# 8-14
+def make_car(manufacturer, model, **carInfo):
+    car['manufacturer'] = manufacturer
+    car['model'] = model
+
+    for k, v in carInfo.items():
+        car[k] = v
+
+    return car
+```
+
+## 8-15..17
+
+```python
+$ cat print_functions.py
+# -*- coding: utf-8 -*-
+
+def hello():
+    print('Hello world!')
+
+def printMessage(message):
+    print(message)
+
+----------------------------
+$ cat print_models.py
+# -*- coding: utf-8 -*-
+
+import print_functions
+from print_functions import hello, printMessage as pm
+# from print_functions import printMessage as pm
+# import print_functions as pf
+# from print_functions import *
+
+hello()
+pm('Hello Python!')
+```
