@@ -67,6 +67,7 @@ $gitMainDir = "D:\git"
 $starGit = Join-Path $gitMainDir "0star"
 $learnGit = Join-Path $gitMainDir "learn-career"
 $nocResourceGit = Join-Path $gitMainDir "noc.resource"
+$qcloudGit = Join-Path $nocResourceGit '0project\qcloud.sdk'
 $nocWikiGit = Join-Path $gitMainDir "noc.wiki"
 
 ## Python Dir
@@ -110,16 +111,23 @@ function Get-Cred {
     $userDomainC = "ehaic\administrator"
     $userDomainCar = "ehicar\administrator"
     $passwdDomain = DT $env:passwdDomain | ConvertTo-SecureString -asPlainText -Force
+    # domain web
+    $userDomainWebSH = 'ehi\webadmin'
+    $userDomainWebCar = 'callcenter\webadmin'
+    $passwdDomainWeb = DT $env:passwdDomainWeb | ConvertTo-SecureString -asPlainText -Force
+
 
     # User-list: key: userNicename; value1: username, values2: userpassword.
     $creds = @{
-        admin     = $userAdmin, $passwdAdmin
-        admin1    = $userAdmin, $passwdAdmin1
-        admin3    = $userAdmin, $passwdAdmin3
-        adminq    = $userAdmin, $passwdAdminQ
-        domain    = $userDomain, $passwdDomain
-        domainc   = $userDomainC, $passwdDomain
-        domaincar = $userDomainCar, $passwdDomain
+        admin        = $userAdmin, $passwdAdmin
+        admin1       = $userAdmin, $passwdAdmin1
+        admin3       = $userAdmin, $passwdAdmin3
+        adminq       = $userAdmin, $passwdAdminQ
+        domain       = $userDomain, $passwdDomain
+        domainc      = $userDomainC, $passwdDomain
+        domaincar    = $userDomainCar, $passwdDomain
+        domainweb    = $userDomainWebSH , $passwdDomainWeb
+        domainwebcar = $userDomainWebCar, $env:passwdDomainWeb
     }
 
     $cred = New-Object System.Management.Automation.PSCredential($creds.$user[0], $creds.$user[1])
@@ -152,9 +160,23 @@ function EPS {
     )
     if (!($credName)) { $credName = "admin" }
 
-    try { Enter-PsSession $ip -Credential (Get-Cred $credName) }
-    catch { Enter-PsSession $ip -Credential $credName }
+    while ($true) {
+        try {
+            $cred = Get-Cred $credName
+        } catch {
+            $user = $cred = $credName
+            $null = $user # this is credential's user, not credential :-).
+        }
+
+        Enter-PsSession $ip -Credential $cred
+        if ($?) {
+            break
+        } else {
+            $credName = Read-Host "Enter a credential or user"
+        }
+    }
 }
+
 function WEPS {
     ### powershell login to remote server using rdp protocol.
     param (
@@ -171,10 +193,10 @@ function WEPS {
 function LEPS {
     ### windows login to remote linux server using wsl,
     # Need to install sshpass.
-
     param (
-        [string]$ipAndPort,
-        [string]$cred
+        $ip,
+        $port,
+        $cred
     )
     $credDict = @{
         admin  = $env:passwdAdmin
@@ -183,21 +205,38 @@ function LEPS {
         aaa    = $env:passwdAaa
     }
 
-    $ip = $ipAndPort.Split(":")[0]
-    $port = $ipAndPort.Split(":")[1]
-    if (!($port)) { $port = $env:linPort }
-
     if (!($cred)) {
-        $passwd = DT $credDict."admin"
-    } elseif ($credDict.Keys -contains $cred) {
-        $passwd = DT $credDict.$cred
-    } else {
-        $passwd = $cred
+        if (!($port)) {
+            # eg: leps 1.1.1.1
+            $cred = "admin"
+            $port = $env:linPort
+        }
+        if ($port.GetTypeCode() -eq "Int32") {
+            # eg: leps 1.1.1.1 12345
+            $cred = "admin"
+        } else {
+            # eg: leps 1.1.1.1 admin
+            $cred = $port
+            $port = $env:linPort
+        }
     }
+    while ($true) {
+        if ($credDict.Keys -contains $cred) {
+            $passwd = DT $credDict.$cred
+            $user = "root"
+        } else {
+            $user = $cred
+            $passwd = Read-Host "Enter a Password"
+        }
 
-    bash -c "sshpass -p '$passwd' ssh -p $port root@$ip -o StrictHostKeyChecking=no"
+        bash -c "sshpass -p '$passwd' ssh -p $port $user@$ip -o StrictHostKeyChecking=no"
+        if ($?) {
+            break
+        } else {
+            $cred = Read-Host "Enter a credential or user"
+        }
+    }
 }
-
 
 function WCP {
     ### Copy files between windows & windows hosts.
@@ -291,7 +330,7 @@ function LCP {
         $ LSCP 1.1.1.1:12345,/dir/file /dir2/ cred-name"
     }
 
-    if (!($port)) { $port = $env:linPort  }
+    if (!($port)) { $port = $env:linPort }
     if (!($cred)) { $cred = "admin" }
     $passwd = DT $credDict.$cred
 
