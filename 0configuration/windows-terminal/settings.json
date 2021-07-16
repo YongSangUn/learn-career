@@ -21,7 +21,8 @@
     "profiles": {
         "defaults": {
             // "useAcrylic": true,
-            "fontFace": "Cascadia Code PL",
+            // "fontFace": "Cascadia Code PL",
+            "fontFace": "CaskaydiaCove NF",
             "suppressApplicationTitle": true
             // Put settings here that you want to apply to all profiles.
         },
