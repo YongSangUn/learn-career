@@ -7,7 +7,7 @@ try {
     Import-Module oh-my-posh
 } catch {
     Install-Module posh-git -Scope CurrentUser -Force
-    Install-Module oh-my-posh -Scope CurrentUser -RequiredVersion 2.0.496 -Force
+    Install-Module oh-my-posh -Scope CurrentUser -RequiredVersion 2.0.492 -Force
 
     ## oh-my-posh v3 setting (V3 powerline display error.)
     # Install-Module oh-my-posh -Scope CurrentUser -Force
@@ -18,7 +18,14 @@ try {
     # Install-Module -Name PSReadLine -Scope CurrentUser -Force -SkipPublisherCheck
     # link: https://ohmyposh.dev/docs/upgrading/
     # Update-Module -Name oh-my-posh -AllowPrerelease -Scope CurrentUser
+
 }
+# Install powerline fonts.
+# Invoke-WebRequest -Uri 'https://github.com/powerline/fonts/archive/master.zip' -OutFile .\powerlinefonts.zip
+# Expand-Archive .\powerlinefonts.zip
+# .\powerlinefonts\fonts-master\install.ps1
+# https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/CascadiaCode.zip
+# <CaskaydiaCove NF> in the Windows Terminal font settings.
 
 $_ps = $PSVersionTable
 $_psVersion = $_ps.PSVersion
@@ -31,9 +38,9 @@ if ($_psVersion.Major -eq 5) {
 }
 
 try {
-    Set-Theme $theme # oh-my-posh v2
+    Set-PoshPrompt $theme -ErrorAction Stop # oh-my-posh v3
 } catch {
-    Set-PoshPrompt $theme # oh-my-posh v3
+    Set-Theme $theme # oh-my-posh v2
 }
 
 # Set the prediction text source to history
@@ -347,6 +354,43 @@ function Ipy3 {
 }
 function Qt { exit }
 
+# add a consul kv about scripts content.
+function Add-ScriptToConsulKv {
+    param(
+        $scriptPath,
+        $apiKey = '4294844a-b5b5-70ef-cae0-bef6ccfa3b84'
+    )
+
+    if (!(Test-Path $scriptPath)) {
+        throw "The file $scriptPath is not existed."
+    }
+
+    # consul token.
+    $key = (Get-ChildItem $scriptPath).Name
+    $scriptFullPath = (Get-ChildItem $scriptPath).FullName # Actually not necessary
+
+    $body = Get-Content -Encoding utf8 -Raw -Path $scriptFullPath
+
+    $consulMainUrl = "http://consulmain.1hai.cn"
+    $scriptUrl = $consulMainUrl + "/v1/kv/scripts/" + $key
+    $scriptUiUrl = $consulMainUrl + "/ui/main/kv/scripts/" + $key + "/edit"
+
+    Write-Output "==> Add a consul key named <$key> `nscript url   : $scriptUrl`?raw`nscript ui url: $scriptUiUrl"
+
+    $headers = @{ "X-Consul-Token" = $apiKey }
+    $resq = Invoke-WebRequest -Uri $scriptUrl `
+        -Method 'PUT' `
+        -headers $headers `
+        -ContentType 'application/json; charset=utf-8' `
+        -body $body `
+        -UseBasicParsing
+
+    if ($resq.statusCode -lt 400) {
+        "Done"
+    } else {
+        throw "Registration failed."
+    }
+}
 
 ### -------------------vim settings-------------------------###
 # There's usually much more than this in my profile!
