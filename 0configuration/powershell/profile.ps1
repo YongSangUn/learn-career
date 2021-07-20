@@ -217,14 +217,15 @@ function LEPS {
             # eg: leps 1.1.1.1
             $cred = "admin"
             $port = $env:linPort
-        }
-        if ($port.GetTypeCode() -eq "Int32") {
-            # eg: leps 1.1.1.1 12345
-            $cred = "admin"
         } else {
-            # eg: leps 1.1.1.1 admin
-            $cred = $port
-            $port = $env:linPort
+            if ($port.GetTypeCode() -eq "Int32") {
+                # eg: leps 1.1.1.1 12345
+                $cred = "admin"
+            } else {
+                # eg: leps 1.1.1.1 admin
+                $cred = $port
+                $port = $env:linPort
+            }
         }
     }
     while ($true) {
