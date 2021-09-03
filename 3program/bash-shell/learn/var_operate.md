@@ -26,7 +26,7 @@ ${<variable><cmd><regular>}
 使用环境变量示例
 
 ```bash
-$ string='ABC123abc456.txt'
+$ string='ABC123abc123ABC.txt'
 $ echo ${string%.*}         # 取文件名
 ABC123abc123ABC
 $ echo ${string#*.}         # 取文件后缀
