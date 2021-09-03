@@ -7,7 +7,6 @@
 格式如下：
 
 ```bash
-Cancel changes
 ${<variable><cmd><regular>}
 
     <variable>              变量名
