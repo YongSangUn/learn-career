@@ -7,7 +7,6 @@
 格式如下：
 
 ```bash
-
 ${<variable><cmd><regular>}
 
     <variable>              变量名
@@ -18,7 +17,7 @@ ${<variable><cmd><regular>}
 
     #           从头开始，删除最短匹配字段
     ##          从头开始，删除最长匹配字段
-    %           从尾开始，删除最长匹配字段
+    %           从尾开始，删除最短匹配字段
     %%          从尾开始，删除最长匹配字段
 
 ```
@@ -26,19 +25,21 @@ ${<variable><cmd><regular>}
 使用环境变量示例
 
 ```bash
-$ path=${PATH}
-$ echo ${path}
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/.local/sbin:/usr/local/games
-```
+$ string='ABC123abc123ABC.txt'
+$ echo ${string%.*}         # 取文件名
+ABC123abc123ABC
+$ echo ${string#*.}         # 取文件后缀
+txt
 
-- `${path#/*local/sbin:}` head, 删除最短匹配
-  ~~/usr/local/sbin:~~/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/.local/sbin:/usr/local/games
-- `${path##/*local/sbin:}` head, 删除最长匹配
-  ~~/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/.local/sbin:~~/usr/local/games
-- `${path%:*games}` tail, 删除最短匹配
-  /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/.local/sbin~~:/usr/local/games~~
-- `${path%:*games}` tail, 删除最长匹配
-  /usr/local/sbin~~:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/.local/sbin:/usr/local/games~~
+$ echo ${string#*123}       # 从头开始，删除最短匹配字段
+abc123ABC.txt
+$ echo ${string##*123}      # 从头开始，删除最长匹配字段
+ABC.txt
+$ echo ${string%123*}       # 从尾开始，删除最短匹配字段
+ABC123abc
+$ echo ${string%%123*}      # 从尾开始，删除最长匹配字段
+ABC
+
 
 ## 取代
 
