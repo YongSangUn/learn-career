@@ -2,6 +2,8 @@
 
 ## Powershell Line
 # https://docs.microsoft.com/en-us/windows/terminal/tutorials/powerline-setup
+# PowerShell -Command "Set-ExecutionPolicy RemoteSigned -scope Process; iwr -useb https://raw.githubusercontent.com/gerardog/gsudo/master/installgsudo.ps1 | iex"
+
 try {
     Import-Module posh-git
     Import-Module oh-my-posh
