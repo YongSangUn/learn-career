@@ -48,6 +48,20 @@ def insertionSort(nums):
     return nums
 
 
+def quickSort(nums, low, high):
+    if low < high:
+        pi = partition(nums, low, high)
+
+        quickSort(nums, low, pi - 1)
+        quickSort(nums, pi + 1, high)
+
+
+def partition(nums, low, high):
+    pivot = nums[high]
+    i = low - 1
+
+    for j in range(low,high-1)
+
 if __name__ == "__main__":
     nums = [random.randint(0, 100) for i in range(random.randint(2, 30))]
     print(nums)
