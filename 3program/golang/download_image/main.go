@@ -13,14 +13,11 @@ import (
 )
 
 // var waitGroup = new(sync.WaitGroup)
-const logFile = "C:\\Users\\31216\\Desktop\\image\\0images_failed.txt"
-const imageSavePath = "C:\\Users\\31216\\Desktop\\image\\"
-const imageDataFile = "C:\\Users\\31216\\Desktop\\data.xlsx"
+const logFile = ""
+const imageSavePath = ""
+const imageDataFile = ""
 
 func main() {
-	// imageUrl := "https://externalimage.1hai.cn/113/a7a5a649627b437dbb183af2080fc03d.jpg"
-	// fileName := "粤E0MT87.jpg"
-
 	err := os.MkdirAll(imageSavePath, os.ModePerm)
 	if err != nil {
 		log.Println(err)
