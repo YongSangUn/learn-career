@@ -1,4 +1,5 @@
 {
+    "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
     "actions": [
         {
@@ -27,7 +28,6 @@
         },
         "list": [
             {
-                "acrylicOpacity": 0.41999999999999998,
                 "backgroundImage": "https://wallpapercave.com/wp/wp7917357.png",
                 "backgroundImageOpacity": 0.17000000000000001,
                 "cursorShape": "bar",
@@ -35,12 +35,12 @@
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell Core 7.1",
+                "opacity": 100,
                 "source": "Windows.Terminal.PowershellCore",
                 "tabTitle": "pwsh_7.1",
                 "useAcrylic": false
             },
             {
-                "commandline": "powershell.exe",
                 "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
                 "hidden": false,
                 "name": "Windows PowerShell",
@@ -72,7 +72,6 @@
                 "backgroundImageOpacity": 0.34000000000000002,
                 "backgroundImageStretchMode": "fill",
                 "colorScheme": "Campbell Powershell",
-                "commandline": "cmd.exe",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": false,
                 "name": "Command Prompt",
@@ -87,8 +86,9 @@
                 "tabTitle": "azure_cloud_shell"
             },
             {
-                "commandline": "pwsh.exe -command  ssh -p $env:myCentosHostPort $env:myCentosHost ",
+                "commandline": "pwsh.exe -command  ssh -p (DesStr $env:myCentosHostPort) (DecStr $env:myCentosHost)",
                 "experimental.retroTerminalEffect": false,
+                "guid": "{a56388d2-84ad-5bba-9da7-eb7575932de0}",
                 "icon": "https://pbs.twimg.com/profile_images/1004017530799906816/PBnd8yDL_400x400.jpg",
                 "name": "SangUn-Centos",
                 "tabTitle": "SangUn-Centos",
@@ -101,10 +101,24 @@
                 "colorScheme": "Tango Dark",
                 "commandline": "ipython",
                 "experimental.retroTerminalEffect": false,
+                "guid": "{3d5c7cc8-e433-5aa6-963e-6d37394494a4}",
                 "icon": "https://engineering.fb.com/wp-content/uploads/2016/05/2000px-Python-logo-notext.svg_.png",
                 "name": "Python 3",
+                "startingDirectory": "%USERPROFILE%",
                 "tabTitle": "IPython 3",
                 "useAcrylic": false
+            },
+            {
+                "guid": "{17bf3de4-5353-5709-bcf9-835bd952a95e}",
+                "hidden": true,
+                "name": "Ubuntu-22.04",
+                "source": "Windows.Terminal.Wsl"
+            },
+            {
+                "guid": "{f9ceaf27-504c-58d7-927c-d1d6a7ac7d3c}",
+                "hidden": false,
+                "name": "Ubuntu 22.04.1 LTS",
+                "source": "CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc"
             }
         ]
     },
@@ -292,6 +306,29 @@
             "selectionBackground": "#FFFFFF",
             "white": "#D3D7CF",
             "yellow": "#C4A000"
+        },
+        {
+            "background": "#300A24",
+            "black": "#171421",
+            "blue": "#0037DA",
+            "brightBlack": "#767676",
+            "brightBlue": "#08458F",
+            "brightCyan": "#2C9FB3",
+            "brightGreen": "#26A269",
+            "brightPurple": "#A347BA",
+            "brightRed": "#C01C28",
+            "brightWhite": "#F2F2F2",
+            "brightYellow": "#A2734C",
+            "cursorColor": "#FFFFFF",
+            "cyan": "#3A96DD",
+            "foreground": "#FFFFFF",
+            "green": "#26A269",
+            "name": "Ubuntu-22.04-ColorScheme",
+            "purple": "#881798",
+            "red": "#C21A23",
+            "selectionBackground": "#FFFFFF",
+            "white": "#CCCCCC",
+            "yellow": "#A2734C"
         },
         {
             "background": "#000000",
