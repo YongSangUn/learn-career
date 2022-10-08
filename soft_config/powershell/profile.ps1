@@ -239,10 +239,10 @@ function LEPS {
         [switch]$details = $false
     )
     $credDict = @{
-        admin  = DecStr $passwdAdmin
-        admin1 = DecStr $passwdadmin1
-        admin3 = DecStr $passwdAdmin3
-        aaa    = DecStr $passwdAaa
+        admin  = $passwdAdmin
+        admin1 = $passwdadmin1
+        admin3 = $passwdAdmin3
+        aaa    = $passwdAaa
     }
     if (!($ip)) {
         "Please enter the host."
@@ -266,9 +266,9 @@ function LEPS {
         } elseif ($ip -match '^(172\.21|192\.168\.7)\.') {
             $port = DecStr "Bo0AHVqCnhTLnLKR/n9pA9bVaOXZrWjB3RM7yrnXxKk="
         } elseif ($ip -match '^(192\.168|172\.17\.30)') {
-            $port = "aoJme8aFESCL/I9iDkcqkp5qgcrws44x2FlQOt/TMvY="
+            $port = DecStr "aoJme8aFESCL/I9iDkcqkp5qgcrws44x2FlQOt/TMvY="
         } elseif ($ip -match '^192\.25') {
-            $port = "trVsxsbnO74Ok214yoaiwtUS5adiGbyZz9v2e4R0OEs="
+            $port = DecStr "trVsxsbnO74Ok214yoaiwtUS5adiGbyZz9v2e4R0OEs="
         } else {
             $port = Read-Host "Unknown Ip, please enter the ssh-port:"
         }
