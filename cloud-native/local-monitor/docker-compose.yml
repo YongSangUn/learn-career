@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+
+  prometheus:
+    user: root
+    image: prom/prometheus
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/data/:/prometheus
+    ports:
+      - 9090:9090
+
+  grafana:
+    user: root
+    image: grafana/grafana
+    volumes:
+      - ./grafana:/var/lib/grafana
+    ports:
+      - 3000:3000
+
+  node-exporter:
+    image: prom/node-exporter
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    ports:
+      - 127.0.0.1:9100:9100
+    network_mode: "host"
