@@ -30,7 +30,12 @@ try {
 }
 
 ### Set the prediction text source to history
-# Import-Module PSReadLine
+try {
+    Import-Module PSReadLine -ErrorAction Stop
+} catch {
+    Install-Module -Name PSReadLine -AllowClobber -Force
+}
+
 Set-PSReadLineOption -EditMode Emacs
 Set-PSReadLineOption -PredictionSource History
 Set-PSReadLineOption -HistoryNoDuplicates
@@ -42,7 +47,7 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 # Set-ExecutionPolicy RemoteSigned -scope Process
 # iwr -useb https://raw.githubusercontent.com/gerardog/gsudo/master/installgsudo.ps1 | iex
 try {
-    Import-Module 'C:\Program Files (x86)\gsudo\gsudoModule.psd1'
+    Import-Module 'C:\Program Files (x86)\gsudo\gsudoModule.psd1' -ErrorAction Stop
 } catch {
     $null
 }
