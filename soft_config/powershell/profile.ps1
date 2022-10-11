@@ -263,15 +263,15 @@ function LEPS {
     }
 
     if (!($port)) {
-        if ($ip -match '^172\.(21|20)\.12') {
+        if ($ip -match (DecStr 'G7mLPJq5twHk7moKjudun1TBnQcUdHICryu8wbvBtos5E0RyKJeB+vEWf0neqP6f')) {
             $port = DecStr "HbQ84iVmzASpT2ujUbHZe+dL4TPyQRnb0wB0ONLpoT0="
-        } elseif ($ip -match '^172\.(31|20)\.') {
+        } elseif ($ip -match (DecStr "AbZGls7gfTEklewLJuPJLf9j4z9slEFO5esXbkF/90c=")) {
             $port = DecStr $linPort
-        } elseif ($ip -match '^(172\.21|192\.168\.7)\.') {
+        } elseif ($ip -match (DecStr "+lvFPeb9ksAVMnn9/hZbj4phzN1EbhzpmfEb+9unAU6BCuXZSI+xyM4CqnWS1aoY")) {
             $port = DecStr "Bo0AHVqCnhTLnLKR/n9pA9bVaOXZrWjB3RM7yrnXxKk="
-        } elseif ($ip -match '^(192\.168|172\.17\.30)') {
+        } elseif ($ip -match (DecStr "egF0DuKsipuK4BpUMRuroGAecPeQt0BlJCIc66ZgkeniYXp101v1/FrOnGJm0cAA")) {
             $port = DecStr "aoJme8aFESCL/I9iDkcqkp5qgcrws44x2FlQOt/TMvY="
-        } elseif ($ip -match '^192\.25') {
+        } elseif ($ip -match (DecStr "fgm30u/rTBLb9EnV6zrDDORhz01k2053/33jc9/u9FY=")) {
             $port = DecStr "trVsxsbnO74Ok214yoaiwtUS5adiGbyZz9v2e4R0OEs="
         } else {
             $port = Read-Host "Unknown Ip, please enter the ssh-port:"
