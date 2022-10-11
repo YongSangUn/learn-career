@@ -76,8 +76,7 @@ $nocWikiGit = Join-Path $gitMainDir "noc.wiki"
 $pythonPkg = "C:\python38\Lib\site-packages\"
 
 ## Aes Encryption
-# $AesKeyEhi = $env:AesKeyEhi
-$AesKeyEhi = irm 'http://consulmain.1hai.cn/v1/kv/keys/aeskeyehi?raw'
+$AesKeyEhi = $env:AesKeyEhi
 
 $passwdAdmin = "o6jaCyf1llJrNDeLfsfPogGczv+JIatnMA9wr0pVfEw="
 $passwdAdmin1 = "tPWGX2RqgzUe6FH2xiVQ3e/BK9gxY+Ib/LHypRqa8po="
