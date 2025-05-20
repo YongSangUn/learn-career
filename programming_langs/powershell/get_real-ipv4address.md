@@ -41,7 +41,39 @@ def get_host_ip():
 
 我的目的是想通过原生的环境来找到正确的 ip ，但是还是可能会有缺点。
 
-如果想要正确的获取，还是推荐 windows 安装 python ，使用 python 实现。
+~如果想要正确的获取，还是推荐 windows 安装 python ，使用 python 实现。~
+
+### udp 包
+
+原理和上述的 udp 包一样，只不过是在 powershell 中实现。
+
+```powershell
+# 创建一个UDP客户端对象但不实际连接
+$udpClient = New-Object System.Net.Sockets.UdpClient
+try {
+    # 连接到任意地址（不会实际建立连接）
+    $udpClient.Connect("8.8.8.8", 53)
+    # 获取本地端点信息
+    $localEndpoint = $udpClient.Client.LocalEndPoint
+    $localIP = $localEndpoint.Address.ToString()
+    Write-Output "本机IP地址: $localIP"
+} finally {
+    $udpClient.Dispose()
+}
+```
+
+上诉的命令可以优化一下：
+
+```powershell
+$c=(New-Object System.Net.Sockets.UdpClient)
+$c.Connect("8.8.8.8",53)
+$c.Client.LocalEndPoint.Address.ToString()
+
+# 或者直接一行
+(New-Object System.Net.Sockets.UdpClient|%{$_.Connect("8.8.8.8",53);$_.Client.LocalEndPoint.Address.ToString()})
+# or
+($c=New-Object System.Net.Sockets.UdpClient).Connect("8.8.8.8",53);$c.Client.LocalEndPoint.Address.ToString()
+```
 
 ### 单网卡
 
